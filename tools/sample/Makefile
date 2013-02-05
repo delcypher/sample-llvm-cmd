@@ -15,6 +15,8 @@ TOOLNAME=Sample
 #
 USEDLIBS = sample.a
 
+LINK_COMPONENTS = support
+
 #
 # Include Makefile.common so we know what to do.
 #
