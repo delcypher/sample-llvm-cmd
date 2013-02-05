@@ -11,8 +11,7 @@ LEVEL=../..
 TOOLNAME=Sample
 
 #
-# List libraries that we'll need
-# We use LIBS because sample is a dynamic library.
+# List static libraries (in our lib/ directory) that we'll need
 #
 USEDLIBS = sample.a
 
