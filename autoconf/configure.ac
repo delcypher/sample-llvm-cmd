@@ -3,9 +3,9 @@ dnl * Initialize
 dnl **************************************************************************
 AC_INIT([[[SAMPLE]]],[[[x.xx]]],[bugs@yourdomain])
 
-dnl Identify where LLVM source tree is (this is specific to my build, fix it for yourself)
-LLVM_SRC_ROOT="../../llvm/llvm/src/"
-LLVM_OBJ_ROOT="../../llvm/llvm/bin/"
+dnl Identify where LLVM source tree is
+LLVM_SRC_ROOT="../.."
+LLVM_OBJ_ROOT="../.."
 
 dnl Find absolute paths to LLVM source and object trees
 LLVM_ABS_SRC_ROOT="`cd $srcdir ; cd $LLVM_SRC_ROOT ; pwd`"
@@ -41,7 +41,7 @@ AC_CONFIG_SRCDIR(["Makefile.common.in"])
 
 dnl Place all of the extra autoconf files into the config subdirectory. Tell
 dnl various tools where the m4 autoconf macros are.
-AC_CONFIG_AUX_DIR([$LLVM_SRC_ROOT/autoconf])
+AC_CONFIG_AUX_DIR([autoconf])
 
 dnl **************************************************************************
 dnl Begin LLVM configure.ac Import
