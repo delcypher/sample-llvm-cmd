@@ -26,7 +26,11 @@ cl::opt<string> path("p", cl::desc("Specify output path"),
 int
 main (int argc, char ** argv)
 {
-  cl::ParseCommandLineOptions(argc, argv);
+  llvm::cl::extrahelp("This is more help!\n");
+  llvm::cl::extrahelp("And even more!\n");
+
+  cl::ParseCommandLineOptions(argc, argv, "This is a small program to demo the LLVM CommandLine API");
+
   /* It is necessary to call this. Even if -print-all-options is called
   *  this function needs to be called as it is not called automatically.
   *  I guess this is useful as it is nice to let the programmer decide
