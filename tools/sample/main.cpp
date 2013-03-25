@@ -11,7 +11,17 @@
 using std::string;
 using namespace llvm;
 
-cl::opt<string> OutputFilename("o", cl::desc("Specify output filename"), cl::value_desc("filename"), cl::init("testfile.cpp"));
+OPT_GRP(TestOptions,Test Options, These options are to be used when running tests)
+
+cl::opt<string> OutputFilename("o", cl::desc("Specify output filename"),
+    cl::value_desc("filename"),
+    cl::init("testfile.cpp"),
+    cl::grp<TestOptions>() );
+
+cl::opt<string> path("p", cl::desc("Specify output path"),
+    cl::value_desc("a path"),
+    cl::init("testfile.cpp"),
+    cl::grp<cl::GeneralOption>() );
 
 int
 main (int argc, char ** argv)
