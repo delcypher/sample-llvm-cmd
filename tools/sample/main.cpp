@@ -76,6 +76,7 @@ main (int argc, char ** argv)
 
   assert(hack.count("print-all-options") >0);
   hack["print-all-options"]->setHiddenFlag(llvm::cl::NotHidden);
+  hack["print-all-options"]->setOptionCategory<TestOptions>();
 
   cl::ParseCommandLineOptions(argc, argv, "This is a small program to demo the LLVM CommandLine API");
 
