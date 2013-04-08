@@ -21,6 +21,7 @@
 using namespace llvm;
 
 
+llvm::cl::OptionCategory SampleLibCat("Library options","These are cool library options");
 
 enum LOpts {
   // 'inline' is a C++ keyword, so name it 'inlining'
@@ -34,7 +35,9 @@ cl::bits<LOpts> OptimizationBits(cl::desc("Stuff in library"),
     clEnumVal(lconstprop         , "Constant Propagation"),
    clEnumValN(linlining, "linline", "Procedure Integration"),
     clEnumVal(lstrip             , "Strip Symbols"),
-  clEnumValEnd));
+  clEnumValEnd),
+  cl::cat(SampleLibCat) 
+  );
 
 int
 compute_sample (int a)
