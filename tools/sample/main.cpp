@@ -23,12 +23,17 @@ cl::opt<string> OutputFilename("o", cl::desc("Specify output filename"),
 cl::opt<string> path("p", cl::desc("Specify output path"),
     cl::value_desc("a path"),
     cl::init("testfile.cpp"),
-    cl::cat(llvm::cl::defaultCategory)
+    cl::cat(llvm::cl::GeneralCategory)
     );
 
 cl::opt<bool> testManualHelp ("manual-help", cl::desc("Show help output in categories"),
     cl::init(false),
     cl::cat(SpecialOptionCat)
+    );
+
+cl::opt<string> variable("v", cl::desc("I don't do anything"),
+    cl::value_desc("a string"),
+    cl::init("default-string")
     );
 
 enum OptLevel {
@@ -85,7 +90,7 @@ main (int argc, char ** argv)
   assert(hack.count("print-all-options") >0);
   hack["print-all-options"]->setHiddenFlag(llvm::cl::NotHidden);
   hack["print-all-options"]->setCategory(TestOptionCat);
-  
+
   cl::ParseCommandLineOptions(argc, argv, "This is a small program to demo the LLVM CommandLine API");
 
   /* It is necessary to call this. Even if -print-all-options is called
