@@ -67,6 +67,16 @@ cl::list<Opts> OptimizationList(cl::desc("Available Optimizations:"),
 
 cl::opt<int> thingy("abc",cl::desc("I don't really do anything"),cl::cat(SpecialOptionCat));
 
+  cl::OptionCategory StageSelectionCat("State Selection Options",
+                                       "These control which stages are run.");
+
+  cl::opt<bool> preprocessor("E",cl::desc("Run preprocessor state."),
+                             cl::cat(StageSelectionCat));
+
+  cl::opt<bool> noLink("c",cl::desc("Run all stages except linking"),
+                       cl::cat(StageSelectionCat));
+
+
 int
 main (int argc, char ** argv)
 {
@@ -76,15 +86,6 @@ main (int argc, char ** argv)
   //Modify options we don't have direct access to
   StringMap<llvm::cl::Option*> hack; 
   llvm::cl::getRegisteredOptions(hack);
-
-  //Make -help become -help-list
-  assert(hack.count("help") > 0);
-  hack["help"]->setDescription("Alphabetical list options (-help-hidden for more)");
-  hack["help"]->setArgStr("help-list");
-
-  //Make -help-cate become -help
-  assert(hack.count("help-cat") > 0);
-  hack["help-cat"]->setArgStr("help");
 
   //Unhide really useful option and put it in a different category
   assert(hack.count("print-all-options") >0);
